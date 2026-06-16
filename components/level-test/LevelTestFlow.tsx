@@ -56,8 +56,11 @@ export function LevelTestFlow() {
         </div>
       </div>
 
-      <div className={`p-6 md:p-8 ${THEME.card}`}>
-        <h1 className="text-xl font-bold leading-snug md:text-2xl">
+      <div
+        key={step}
+        className={`motion-safe:animate-slide-in-right p-4 sm:p-6 md:p-8 ${THEME.card}`}
+      >
+        <h1 className="text-lg font-bold leading-snug sm:text-xl md:text-2xl">
           {question.prompt}
         </h1>
         {question.helper && (
@@ -65,14 +68,18 @@ export function LevelTestFlow() {
         )}
 
         <ul className="mt-8 flex flex-col gap-3">
-          {question.options.map((option) => {
+          {question.options.map((option, index) => {
             const selected = currentAnswer === option.id;
             return (
-              <li key={option.id}>
+              <li
+                key={option.id}
+                className="motion-safe:animate-fade-in-up"
+                style={{ animationDelay: `${index * 60}ms` }}
+              >
                 <button
                   type="button"
                   onClick={() => setAnswer(question.id, option.id)}
-                  className={`w-full rounded-xl border p-4 text-left text-sm transition md:text-base ${
+                  className={`min-h-12 w-full rounded-xl border p-4 text-left text-sm transition-all duration-200 sm:min-h-0 md:text-base ${
                     selected ? THEME.optionSelected : THEME.optionDefault
                   }`}
                 >
@@ -84,12 +91,12 @@ export function LevelTestFlow() {
         </ul>
       </div>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-between">
+      <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
         <button
           type="button"
           onClick={goPrev}
           disabled={step === 0}
-          className={`${THEME.btnSecondary} disabled:opacity-40`}
+          className={`${THEME.btnSecondary} sm:min-w-[7rem] disabled:opacity-40`}
         >
           이전
         </button>
@@ -97,7 +104,7 @@ export function LevelTestFlow() {
           type="button"
           onClick={goNext}
           disabled={!currentAnswer}
-          className={`${THEME.btnPrimary} disabled:opacity-40`}
+          className={`${THEME.btnPrimary} sm:min-w-[7rem] disabled:opacity-40`}
         >
           {step === total - 1 ? "결과 보기" : "다음"}
         </button>

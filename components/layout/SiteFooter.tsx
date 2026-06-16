@@ -8,7 +8,7 @@ export function SiteFooter() {
 
   return (
     <footer className={`mt-auto ${THEME.footer}`}>
-      <div className="mx-auto max-w-5xl px-4 py-10 md:px-6">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:py-10 md:px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
             <Link

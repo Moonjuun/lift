@@ -6,20 +6,23 @@ import { THEME } from "@/constants/theme";
 export function SiteHeader() {
   return (
     <header className={`sticky top-0 z-50 ${THEME.header}`}>
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 md:px-6">
-        <Link href={ROUTES.home} className="text-lg font-bold tracking-tight">
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-4 sm:h-16 md:px-6">
+        <Link
+          href={ROUTES.home}
+          className="motion-safe:animate-fade-in shrink-0 text-lg font-bold tracking-tight sm:text-xl"
+        >
           Lift
         </Link>
-        <nav className="flex items-center gap-4 text-sm">
+        <nav className="flex shrink-0 items-center gap-3 text-sm sm:gap-4">
           <Link
             href={ROUTES.tracks}
-            className={`${THEME.textMuted} transition hover:opacity-80`}
+            className={`inline-flex min-h-10 items-center px-1 py-2 ${THEME.textMuted} transition hover:opacity-80`}
           >
             트랙
           </Link>
           <Link
             href={ROUTES.levelTest}
-            className={`${THEME.textMuted} transition hover:opacity-80`}
+            className={`inline-flex min-h-10 items-center whitespace-nowrap px-1 py-2 ${THEME.textMuted} transition hover:opacity-80`}
           >
             레벨 테스트
           </Link>

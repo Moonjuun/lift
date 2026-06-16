@@ -32,7 +32,7 @@ export function TrackCard({
   return (
     <Link
       href={ROUTES.trackDetail(slug)}
-      className={`block p-6 transition ${THEME.card} ${
+      className={`block p-4 transition-all duration-200 sm:p-6 ${THEME.card} ${
         highlighted ? THEME.optionSelected : ""
       }`}
     >
@@ -41,7 +41,7 @@ export function TrackCard({
           추천 트랙
         </p>
       )}
-      <h3 className="text-xl font-bold">{title}</h3>
+      <h3 className="text-lg font-bold sm:text-xl">{title}</h3>
       <p className={`mt-1 text-sm ${THEME.textMuted}`}>{subtitle}</p>
       <div className="mt-4 flex flex-wrap gap-2">
         {keywords.map((kw) => (

@@ -18,11 +18,11 @@ export type ThemeTokens = {
 
 export const THEME: ThemeTokens = {
   root: "bg-[#f8f7f4] text-zinc-900 min-h-full",
-  card: "rounded-2xl border border-zinc-200 bg-white shadow-sm",
+  card: "lift-card rounded-2xl border border-zinc-200 bg-white shadow-sm",
   btnPrimary:
-    "inline-flex items-center justify-center rounded-xl bg-[#ff5c35] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#e84f2b] shadow-md shadow-orange-200/50",
+    "btn-shine inline-flex w-full min-h-11 items-center justify-center rounded-xl bg-[#ff5c35] px-5 py-3 text-sm font-bold text-white shadow-md shadow-orange-200/50 transition hover:bg-[#e84f2b] sm:w-auto sm:min-h-0 sm:px-6",
   btnSecondary:
-    "inline-flex items-center justify-center rounded-xl border-2 border-zinc-900 px-6 py-3 text-sm font-bold text-zinc-900 transition hover:bg-zinc-900 hover:text-white",
+    "inline-flex w-full min-h-11 items-center justify-center rounded-xl border-2 border-zinc-900 px-5 py-3 text-sm font-bold text-zinc-900 transition hover:bg-zinc-900 hover:text-white sm:w-auto sm:min-h-0 sm:px-6",
   textMuted: "text-zinc-600",
   textAccent: "text-[#ff5c35]",
   badge:

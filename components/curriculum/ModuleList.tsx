@@ -26,7 +26,7 @@ export function ModuleList({
         return (
           <article
             key={mod.id}
-            className={`p-6 ${THEME.card} ${isHighlight ? THEME.optionSelected : ""}`}
+            className={`p-4 sm:p-6 ${THEME.card} ${isHighlight ? THEME.optionSelected : ""}`}
           >
             <div className="flex flex-wrap items-center gap-2">
               <span className={THEME.badge}>{LEVEL_LABELS[mod.level]}</span>
@@ -55,10 +55,12 @@ export function ModuleList({
               {mod.lessons.map((lesson) => (
                 <li
                   key={lesson.id}
-                  className="flex justify-between gap-4 py-1"
+                  className="flex flex-col gap-0.5 py-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:py-1"
                 >
-                  <span>{lesson.title}</span>
-                  <span className={`shrink-0 ${THEME.textMuted}`}>
+                  <span className="min-w-0 break-words">{lesson.title}</span>
+                  <span
+                    className={`shrink-0 text-xs sm:text-sm ${THEME.textMuted}`}
+                  >
                     {lesson.durationMinutes}분
                   </span>
                 </li>
@@ -68,9 +70,9 @@ export function ModuleList({
         );
       })}
 
-      <article className={`p-6 md:p-8 ${THEME.card} ring-2 ring-orange-300`}>
+      <article className={`p-4 sm:p-6 md:p-8 ${THEME.card} ring-2 ring-orange-300`}>
         <span className={THEME.badge}>마무리 프로젝트</span>
-        <h3 className="mt-3 text-xl font-bold">{capstone.title}</h3>
+        <h3 className="mt-3 text-lg font-bold sm:text-xl">{capstone.title}</h3>
         <p className={`mt-2 ${THEME.textMuted}`}>{capstone.summary}</p>
         <div
           className={`mt-4 rounded-xl border p-4 ${THEME.divider} bg-orange-50`}

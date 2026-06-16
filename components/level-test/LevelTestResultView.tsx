@@ -35,9 +35,11 @@ export function LevelTestResultView() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <div className={`p-6 text-center md:p-10 ${THEME.card}`}>
+      <div
+        className={`motion-safe:animate-celebrate-pop p-4 text-center sm:p-6 md:p-10 ${THEME.card}`}
+      >
         <p className={`text-sm font-medium ${THEME.textAccent}`}>나의 레벨</p>
-        <h1 className="mt-2 text-4xl font-bold">
+        <h1 className="mt-2 text-3xl font-bold sm:text-4xl">
           {LEVEL_LABELS[result.level]}
         </h1>
         <p className={`mt-4 text-base leading-relaxed ${THEME.textMuted}`}>
@@ -80,7 +82,7 @@ export function LevelTestResultView() {
         )}
       </section>
 
-      <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+      <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
         <Link href={ROUTES.tracks} className={THEME.btnPrimary}>
           전체 트랙 보기
         </Link>

@@ -31,7 +31,7 @@ export async function TrackDetailPageContent({
 
       <header className="mt-6">
         <span className={THEME.badge}>{track.subtitle}</span>
-        <h1 className="mt-3 text-3xl font-bold md:text-4xl">{track.title}</h1>
+        <h1 className="mt-3 text-2xl font-bold sm:text-3xl md:text-4xl">{track.title}</h1>
         <p className={`mt-4 max-w-2xl leading-relaxed ${THEME.textMuted}`}>
           {track.description}
         </p>
@@ -61,7 +61,7 @@ export async function TrackDetailPageContent({
           {moduleCount}개 모듈 + 마무리 커스텀 프로젝트 · 추천 레벨:{" "}
           {track.suggestedLevels.map((l) => LEVEL_LABELS[l]).join(", ")}
         </p>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link href={ROUTES.trackCurriculum(slug)} className={THEME.btnPrimary}>
             전체 커리큘럼 보기
           </Link>
