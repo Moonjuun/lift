@@ -1,0 +1,111 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { LEVEL_TEST_QUESTIONS } from "@/constants/level-test-questions";
+import { ROUTES } from "@/constants/routes";
+import { THEME } from "@/constants/theme";
+import { useLevelTestStore } from "@/store/level-test-store";
+
+/** 레벨 테스트 문항 진행 UI */
+export function LevelTestFlow() {
+  const router = useRouter();
+  const { answers, setAnswer, computeResult } = useLevelTestStore();
+  const [step, setStep] = useState(0);
+
+  const question = LEVEL_TEST_QUESTIONS[step];
+  const total = LEVEL_TEST_QUESTIONS.length;
+  const progress = ((step + 1) / total) * 100;
+
+  const currentAnswer = useMemo(
+    () => answers.find((a) => a.questionId === question.id)?.optionId,
+    [answers, question.id],
+  );
+
+  const goNext = () => {
+    if (!currentAnswer) return;
+    if (step < total - 1) {
+      setStep(step + 1);
+      return;
+    }
+    const result = computeResult();
+    if (result) {
+      router.push(ROUTES.levelTestResult);
+    }
+  };
+
+  const goPrev = () => {
+    if (step > 0) setStep(step - 1);
+  };
+
+  return (
+    <div className="mx-auto max-w-2xl">
+      <div className="mb-8">
+        <div className="mb-2 flex justify-between text-sm">
+          <span className={THEME.textMuted}>
+            {step + 1} / {total}
+          </span>
+          <span className={THEME.textAccent}>자가진단</span>
+        </div>
+        <div className={THEME.progressTrack}>
+          <div
+            className={THEME.progressFill}
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+
+      <div className={`p-6 md:p-8 ${THEME.card}`}>
+        <h1 className="text-xl font-bold leading-snug md:text-2xl">
+          {question.prompt}
+        </h1>
+        {question.helper && (
+          <p className={`mt-2 text-sm ${THEME.textMuted}`}>{question.helper}</p>
+        )}
+
+        <ul className="mt-8 flex flex-col gap-3">
+          {question.options.map((option) => {
+            const selected = currentAnswer === option.id;
+            return (
+              <li key={option.id}>
+                <button
+                  type="button"
+                  onClick={() => setAnswer(question.id, option.id)}
+                  className={`w-full rounded-xl border p-4 text-left text-sm transition md:text-base ${
+                    selected ? THEME.optionSelected : THEME.optionDefault
+                  }`}
+                >
+                  {option.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-between">
+        <button
+          type="button"
+          onClick={goPrev}
+          disabled={step === 0}
+          className={`${THEME.btnSecondary} disabled:opacity-40`}
+        >
+          이전
+        </button>
+        <button
+          type="button"
+          onClick={goNext}
+          disabled={!currentAnswer}
+          className={`${THEME.btnPrimary} disabled:opacity-40`}
+        >
+          {step === total - 1 ? "결과 보기" : "다음"}
+        </button>
+      </div>
+
+      <p className={`mt-6 text-center text-xs ${THEME.textMuted}`}>
+        <Link href={ROUTES.home}>처음으로</Link>
+      </p>
+    </div>
+  );
+}

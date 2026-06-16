@@ -13,7 +13,12 @@ npm run lint
 npm test          # Vitest 설정 후
 ```
 
+## Claude Code 스킬
+
+| 스킬 | 용도 |
+|------|------|
+| `/commit` | Git 커밋 (lint/test/build → add → HEREDOC commit) |
+
 ## 규칙
 
-- 아키텍처·도메인·테스트: `.claude/rules/`
-- **커밋**: `.claude/rules/git-commit.md` — 사용자 요청 시에만, HEREDOC 메시지 사용
+상세 규칙은 `.claude/rules/` (아키텍처, 도메인, Next.js, 테스트 등).
