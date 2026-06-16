@@ -42,11 +42,13 @@ export function LevelTestFlow() {
   return (
     <div className="mx-auto max-w-2xl">
       <div className="mb-8">
-        <div className="mb-2 flex justify-between text-sm">
-          <span className={THEME.textMuted}>
-            {step + 1} / {total}
+        <div className="mb-2 flex items-center justify-between text-sm">
+          <span className={`font-medium ${THEME.textMuted}`}>
+            <span className="text-zinc-900">{step + 1}</span> / {total}
           </span>
-          <span className={THEME.textAccent}>자가진단</span>
+          <span className={`text-xs font-semibold ${THEME.textAccent}`}>
+            {Math.round(progress)}%
+          </span>
         </div>
         <div className={THEME.progressTrack}>
           <div
@@ -110,8 +112,13 @@ export function LevelTestFlow() {
         </button>
       </div>
 
-      <p className={`mt-6 text-center text-xs ${THEME.textMuted}`}>
-        <Link href={ROUTES.home}>처음으로</Link>
+      <p className="mt-6 text-center text-xs">
+        <Link
+          href={ROUTES.home}
+          className={`${THEME.textMuted} transition-colors hover:text-zinc-900`}
+        >
+          처음으로
+        </Link>
       </p>
     </div>
   );

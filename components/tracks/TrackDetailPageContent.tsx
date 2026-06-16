@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ThemeShell } from "@/components/layout/ThemeShell";
 import { ModuleList } from "@/components/curriculum/ModuleList";
+import { ArrowRightIcon, CheckIcon } from "@/components/ui/Icon";
 import { getTrackBySlug } from "@/apis/getTracks";
 import { getCurriculumBySlug } from "@/apis/getCurriculum";
 import { ROUTES } from "@/constants/routes";
@@ -25,23 +26,23 @@ export async function TrackDetailPageContent({
       {/* 뒤로가기 */}
       <Link
         href={ROUTES.tracks}
-        className={`text-sm ${THEME.textMuted} hover:opacity-80`}
+        className={`inline-flex items-center gap-1 text-sm ${THEME.textMuted} transition-colors hover:text-zinc-900`}
       >
-        ← 트랙 목록
+        <span aria-hidden>←</span> 트랙 목록
       </Link>
 
       {/* 헤더 */}
       <header className="mt-6">
-        <span className={THEME.badge}>{track.subtitle}</span>
-        <h1 className="mt-3 text-2xl font-bold sm:text-3xl md:text-4xl">
+        <p className={THEME.eyebrow}>{track.subtitle}</p>
+        <h1 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
           {track.title}
         </h1>
         <p className={`mt-4 max-w-2xl leading-relaxed ${THEME.textMuted}`}>
           {track.description}
         </p>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-5 flex flex-wrap gap-2">
           {track.keywords.map((kw) => (
-            <span key={kw} className={THEME.badge}>
+            <span key={kw} className={THEME.chip}>
               {kw}
             </span>
           ))}
@@ -49,28 +50,32 @@ export async function TrackDetailPageContent({
       </header>
 
       {/* 이런 분께 잘 맞아요 */}
-      <section className={`mt-10 border-t pt-10 ${THEME.divider}`}>
+      <section className={`mt-12 border-t pt-10 ${THEME.divider}`}>
         <h2 className="text-lg font-bold">이런 분께 잘 맞아요</h2>
-        <ul className={`mt-4 space-y-2 text-sm ${THEME.textMuted}`}>
+        <ul className="mt-5 space-y-3">
           {track.fitFor.map((item) => (
-            <li key={item} className="flex items-start gap-2">
-              <span className={`mt-0.5 shrink-0 font-bold ${THEME.textAccent}`}>✓</span>
-              <span>{item}</span>
+            <li key={item} className="flex items-start gap-3 text-sm">
+              <CheckIcon
+                className={`mt-0.5 h-4 w-4 shrink-0 ${THEME.textAccent}`}
+              />
+              <span className="leading-relaxed">{item}</span>
             </li>
           ))}
         </ul>
       </section>
 
       {/* 수강 후 할 수 있어요 */}
-      <section className={`mt-10 border-t pt-10 ${THEME.divider}`}>
-        <h2 className="text-lg font-bold">수강 후 할 수 있어요</h2>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+      <section className={`mt-12 border-t pt-10 ${THEME.divider}`}>
+        <h2 className="text-lg font-bold">수강 후 할 수 있는 것</h2>
+        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
           {track.outcomes.map((outcome) => (
             <li
               key={outcome}
-              className={`flex items-start gap-3 rounded-xl border p-4 ${THEME.divider} bg-orange-50/40`}
+              className={`flex items-start gap-3 rounded-xl border p-4 ${THEME.divider}`}
             >
-              <span className={`mt-0.5 text-base shrink-0 ${THEME.textAccent}`}>🎯</span>
+              <CheckIcon
+                className={`mt-0.5 h-4 w-4 shrink-0 ${THEME.textAccent}`}
+              />
               <span className="text-sm leading-relaxed">{outcome}</span>
             </li>
           ))}
@@ -78,15 +83,12 @@ export async function TrackDetailPageContent({
       </section>
 
       {/* 트랙 특징 */}
-      <section className={`mt-10 border-t pt-10 ${THEME.divider}`}>
+      <section className={`mt-12 border-t pt-10 ${THEME.divider}`}>
         <h2 className="text-lg font-bold">이 트랙의 특징</h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
           {track.highlights.map((h) => (
-            <div
-              key={h.title}
-              className={`rounded-2xl border p-5 ${THEME.card}`}
-            >
-              <p className="font-bold">{h.title}</p>
+            <div key={h.title} className={`p-5 ${THEME.card}`}>
+              <p className="font-semibold">{h.title}</p>
               <p className={`mt-2 text-sm leading-relaxed ${THEME.textMuted}`}>
                 {h.description}
               </p>
@@ -97,16 +99,15 @@ export async function TrackDetailPageContent({
 
       {/* 전체 커리큘럼 — 인라인으로 바로 보여줌 */}
       {curriculum && (
-        <section className={`mt-10 border-t pt-10 ${THEME.divider}`}>
-          <div className="mb-6 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="text-lg font-bold">전체 커리큘럼</h2>
-              <p className={`mt-1 text-sm ${THEME.textMuted}`}>
-                {curriculum.modules.length}개 모듈 + 마무리 커스텀 프로젝트 ·
-                추천 레벨:{" "}
-                {track.suggestedLevels.map((l) => LEVEL_LABELS[l]).join(", ")}
-              </p>
-            </div>
+        <section className={`mt-12 border-t pt-10 ${THEME.divider}`}>
+          <div className="mb-6">
+            <h2 className="text-lg font-bold">전체 커리큘럼</h2>
+            <p className={`mt-2 text-sm ${THEME.textMuted}`}>
+              {curriculum.modules.length}개 모듈과 마무리 프로젝트로 구성돼
+              있어요. 추천 레벨은{" "}
+              {track.suggestedLevels.map((l) => LEVEL_LABELS[l]).join(" · ")}{" "}
+              입니다.
+            </p>
           </div>
           <ModuleList
             modules={curriculum.modules}
@@ -116,19 +117,21 @@ export async function TrackDetailPageContent({
       )}
 
       {/* CTA */}
-      <div className={`mt-10 border-t pt-10 ${THEME.divider}`}>
-        <div className={`rounded-2xl border p-6 sm:p-8 ${THEME.card} text-center`}>
-          <h2 className="text-xl font-bold">지금 바로 시작하세요</h2>
-          <p className={`mt-2 text-sm ${THEME.textMuted}`}>
-            내 레벨을 먼저 확인하고, 딱 맞는 구간부터 시작할 수 있어요.
+      <section className={`mt-12 border-t pt-10 ${THEME.divider}`}>
+        <div className="rounded-2xl border border-zinc-200 bg-white p-7 text-center sm:p-9">
+          <h2 className="text-xl font-bold">어디서 시작할지 모르겠다면</h2>
+          <p className={`mx-auto mt-2 max-w-md text-sm leading-relaxed ${THEME.textMuted}`}>
+            먼저 레벨을 진단하면, 이 커리큘럼에서 나에게 맞는 구간부터 바로
+            시작할 수 있어요.
           </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link href={ROUTES.levelTest} className={THEME.btnPrimary}>
-              내 레벨 테스트하기
+          <div className="mt-6 flex justify-center">
+            <Link href={ROUTES.levelTest} className={`group gap-2 ${THEME.btnPrimary}`}>
+              내 레벨 진단하기
+              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
         </div>
-      </div>
+      </section>
     </ThemeShell>
   );
 }

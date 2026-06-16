@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightIcon } from "@/components/ui/Icon";
 import { THEME } from "@/constants/theme";
 import { ROUTES } from "@/constants/routes";
 import { LEVEL_LABELS } from "@/types/level";
@@ -32,20 +33,25 @@ export function TrackCard({
   return (
     <Link
       href={ROUTES.trackDetail(slug)}
-      className={`block p-4 transition-all duration-200 sm:p-6 ${THEME.card} ${
-        highlighted ? THEME.optionSelected : ""
+      className={`group flex flex-col p-6 ${THEME.card} ${
+        highlighted ? "ring-1 ring-[#ff5c35]/40" : ""
       }`}
     >
       {highlighted && (
-        <p className={`mb-2 text-xs font-semibold ${THEME.textAccent}`}>
-          추천 트랙
-        </p>
+        <span className={`mb-3 w-fit ${THEME.badge}`}>추천 트랙</span>
       )}
-      <h3 className="text-lg font-bold sm:text-xl">{title}</h3>
-      <p className={`mt-1 text-sm ${THEME.textMuted}`}>{subtitle}</p>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h3 className="text-lg font-bold sm:text-xl">{title}</h3>
+          <p className={`mt-1 text-sm ${THEME.textMuted}`}>{subtitle}</p>
+        </div>
+        <ArrowRightIcon
+          className={`mt-1 h-5 w-5 shrink-0 transition-transform duration-200 group-hover:translate-x-1 ${THEME.textAccent}`}
+        />
+      </div>
+      <div className="mt-5 flex flex-wrap gap-2">
         {keywords.map((kw) => (
-          <span key={kw} className={THEME.badge}>
+          <span key={kw} className={THEME.chip}>
             {kw}
           </span>
         ))}

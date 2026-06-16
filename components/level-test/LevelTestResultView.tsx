@@ -7,8 +7,8 @@ import { TrackCard } from "@/components/tracks/TrackCard";
 import { ROUTES } from "@/constants/routes";
 import { THEME } from "@/constants/theme";
 import { TRACKS } from "@/constants/tracks";
-import { useLevelTestStore } from "@/store/level-test-store";
 import { LEVEL_LABELS } from "@/types/level";
+import { useLevelTestStore } from "@/store/level-test-store";
 
 /** 레벨 테스트 결과 화면 */
 export function LevelTestResultView() {
@@ -36,16 +36,18 @@ export function LevelTestResultView() {
   return (
     <div className="mx-auto max-w-2xl">
       <div
-        className={`motion-safe:animate-celebrate-pop p-4 text-center sm:p-6 md:p-10 ${THEME.card}`}
+        className={`motion-safe:animate-fade-in-up p-6 text-center sm:p-8 md:p-10 ${THEME.card}`}
       >
-        <p className={`text-sm font-medium ${THEME.textAccent}`}>나의 레벨</p>
-        <h1 className="mt-2 text-3xl font-bold sm:text-4xl">
+        <p className={THEME.eyebrow}>진단 결과</p>
+        <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
           {LEVEL_LABELS[result.level]}
         </h1>
         <p className={`mt-4 text-base leading-relaxed ${THEME.textMuted}`}>
           {result.headline}
         </p>
-        <p className="mt-2 text-sm">{result.summary}</p>
+        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed">
+          {result.summary}
+        </p>
       </div>
 
       {/* 추천 트랙 카드 — 클릭하면 커리큘럼 포함 상세 페이지로 바로 이동 */}
@@ -63,21 +65,21 @@ export function LevelTestResultView() {
       </section>
 
       {/* 다른 트랙 — 직접 클릭해서 바로 진입 */}
-      <section className={`mt-8 border-t pt-8 ${THEME.divider}`}>
-        <h2 className="mb-4 text-base font-bold">다른 트랙도 살펴보기</h2>
-        {other && (
+      {other && (
+        <section className={`mt-10 border-t pt-8 ${THEME.divider}`}>
+          <h2 className="mb-4 text-base font-bold">다른 트랙도 살펴보기</h2>
           <TrackCard
             slug={other.slug}
             title={other.title}
             subtitle={other.subtitle}
             keywords={other.keywords}
           />
-        )}
-      </section>
+        </section>
+      )}
 
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+      <div className="mt-10 text-center">
         <Link href={ROUTES.levelTest} className={THEME.btnSecondary}>
-          테스트 다시 하기
+          진단 다시 하기
         </Link>
       </div>
     </div>

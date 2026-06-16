@@ -110,7 +110,7 @@ const proModules: CurriculumModule[] = [
     lessons: [
       { id: "p-a2-1", title: "보안·API 키 관리", durationMinutes: 35 },
       { id: "p-a2-2", title: "내부 가이드·온보딩", durationMinutes: 40 },
-      { id: "p-a2-3", title: "ROI 측정·개선", durationMinutes: 45 },
+      { id: "p-a2-3", title: "효과 측정·개선", durationMinutes: 45 },
     ],
   },
 ];
@@ -122,13 +122,13 @@ const proCapstone: CurriculumModule = {
   order: 99,
   title: "커스텀 자동화 프로젝트",
   summary:
-    "본인 업무에서 가장 아픈 반복 작업을 골라, 수집·처리·알림까지 end-to-end로 직접 만듭니다.",
+    "가장 번거로운 반복 작업을 하나 골라, 수집·처리·알림까지 처음부터 끝까지 직접 만듭니다.",
   practicalExample:
     "예: 고객 문의 분류 → 시트 기록 → 주간 요약 슬랙 전송 (본인 업무에 맞게 설계)",
   weeks: 4,
   lessons: [
     { id: "p-c1", title: "문제 정의·범위 잡기", durationMinutes: 60 },
-    { id: "p-c2", title: "MVP 구현 (멘토 피드백)", durationMinutes: 120 },
+    { id: "p-c2", title: "핵심 기능 구현 (멘토 피드백)", durationMinutes: 120 },
     { id: "p-c3", title: "안정화·문서화·시연", durationMinutes: 90 },
   ],
 };
@@ -261,7 +261,7 @@ const vibeCapstone: CurriculumModule = {
   weeks: 4,
   lessons: [
     { id: "v-c1", title: "아이디어 구체화·와이어프레임", durationMinutes: 60 },
-    { id: "v-c2", title: "MVP 개발 (AI 페어)", durationMinutes: 150 },
+    { id: "v-c2", title: "핵심 기능 개발 (AI와 함께)", durationMinutes: 150 },
     { id: "v-c3", title: "배포·데모 데이", durationMinutes: 90 },
   ],
 };
