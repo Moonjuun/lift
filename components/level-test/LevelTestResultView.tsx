@@ -48,6 +48,7 @@ export function LevelTestResultView() {
         <p className="mt-2 text-sm">{result.summary}</p>
       </div>
 
+      {/* 추천 트랙 카드 — 클릭하면 커리큘럼 포함 상세 페이지로 바로 이동 */}
       <section className="mt-10">
         <h2 className="mb-4 text-lg font-bold">추천 트랙</h2>
         {recommended && (
@@ -59,19 +60,11 @@ export function LevelTestResultView() {
             highlighted
           />
         )}
-        <Link
-          href={ROUTES.trackCurriculum(recommended?.slug ?? "pro")}
-          className={`mt-4 block text-center text-sm font-medium ${THEME.textAccent}`}
-        >
-          추천 트랙 커리큘럼 보기 →
-        </Link>
       </section>
 
-      <section className={`mt-10 border-t pt-10 ${THEME.divider}`}>
-        <h2 className="mb-2 text-lg font-bold">다른 트랙도 둘러보기</h2>
-        <p className={`mb-4 text-sm ${THEME.textMuted}`}>
-          추천과 관계없이 전체 커리큘럼을 탐색할 수 있어요.
-        </p>
+      {/* 다른 트랙 — 직접 클릭해서 바로 진입 */}
+      <section className={`mt-8 border-t pt-8 ${THEME.divider}`}>
+        <h2 className="mb-4 text-base font-bold">다른 트랙도 살펴보기</h2>
         {other && (
           <TrackCard
             slug={other.slug}
@@ -82,10 +75,7 @@ export function LevelTestResultView() {
         )}
       </section>
 
-      <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-        <Link href={ROUTES.tracks} className={THEME.btnPrimary}>
-          전체 트랙 보기
-        </Link>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
         <Link href={ROUTES.levelTest} className={THEME.btnSecondary}>
           테스트 다시 하기
         </Link>

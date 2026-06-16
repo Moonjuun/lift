@@ -15,4 +15,8 @@ export type Track = {
   keywords: string[];
   /** 추천 시작 레벨 */
   suggestedLevels: Level[];
+  /** 수강 후 할 수 있는 것들 */
+  outcomes: string[];
+  /** 트랙 특징/강점 하이라이트 */
+  highlights: { title: string; description: string }[];
 };
