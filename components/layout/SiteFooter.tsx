@@ -20,8 +20,8 @@ export function SiteFooter() {
             <p
               className={`mt-2 max-w-xs text-sm leading-relaxed ${THEME.textMuted}`}
             >
-              AI 활용 수준을 진단하고, 나에게 맞는 학습 트랙을 찾는 교육
-              플랫폼이에요.
+              AI 활용 수준을 진단하고, 나에게 맞는 학습 트랙을 찾는
+              학습 도구예요.
             </p>
           </div>
 

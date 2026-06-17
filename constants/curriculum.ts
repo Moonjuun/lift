@@ -6,15 +6,16 @@ const proModules: CurriculumModule[] = [
     trackId: "pro",
     level: "entry",
     order: 1,
-    title: "AI 실무 도구 맵 익히기",
-    summary: "챗GPT·클로드·노션 AI의 차이와 업무에 쓰는 기본 패턴을 익힙니다.",
+    title: "AI와 협업 환경의 큰 그림 잡기",
+    summary:
+      "생성형 AI의 동작 원리·프롬프팅 기초를 익히고, Obsidian·Git으로 AI가 잘 읽는 작업 환경을 만듭니다.",
     practicalExample:
-      "회의록 초안을 AI로 작성하고, 팀 템플릿에 맞게 5분 안에 정리하기",
+      "Obsidian Git 플러그인으로 작업 노트를 GitHub에 자동 동기화하기",
     weeks: 1,
     lessons: [
-      { id: "p-e1-1", title: "AI 도구 3종 비교", durationMinutes: 25 },
-      { id: "p-e1-2", title: "프롬프트 기본 구조", durationMinutes: 30 },
-      { id: "p-e1-3", title: "업무 템플릿 만들기", durationMinutes: 35 },
+      { id: "p-e1-1", title: "생성형 AI 동작 원리 (토큰·컨텍스트·할루시네이션)", durationMinutes: 30 },
+      { id: "p-e1-2", title: "Obsidian 세팅 & AI가 잘 읽는 문서 구조", durationMinutes: 30 },
+      { id: "p-e1-3", title: "Git & GitHub 입문 — Fork GUI로 첫 커밋·푸시", durationMinutes: 35 },
     ],
   },
   {
@@ -22,15 +23,16 @@ const proModules: CurriculumModule[] = [
     trackId: "pro",
     level: "beginner",
     order: 2,
-    title: "엑셀·시트 자동화 기초",
-    summary: "함수·Apps Script로 반복 입력·정리 작업을 줄입니다.",
+    title: "AI 코딩 도구 첫 실습",
+    summary:
+      "Claude Code를 설치하고 CLAUDE.md·PRD 작성법으로 AI에게 체계적으로 일을 시키는 법을 익힙니다.",
     practicalExample:
-      "매주 받는 매출 CSV를 자동 분류해 대시보드 시트에 반영하기",
+      "PRD를 먼저 작성한 뒤 Claude Code에게 이메일 분류 스크립트 만들어달라고 시키기",
     weeks: 2,
     lessons: [
-      { id: "p-b1-1", title: "반복 업무 진단하기", durationMinutes: 20 },
-      { id: "p-b1-2", title: "시트 함수 실전", durationMinutes: 40 },
-      { id: "p-b1-3", title: "Apps Script 입문", durationMinutes: 45 },
+      { id: "p-b1-1", title: "Claude Code 설치 & 첫 실행", durationMinutes: 25 },
+      { id: "p-b1-2", title: "CLAUDE.md 작성법 & PRD 설계도 먼저 쓰기", durationMinutes: 40 },
+      { id: "p-b1-3", title: ".env & API 키 보안 원칙", durationMinutes: 30 },
     ],
   },
   {
@@ -38,15 +40,16 @@ const proModules: CurriculumModule[] = [
     trackId: "pro",
     level: "beginner",
     order: 3,
-    title: "간단 크롤링 · 데이터 모으기",
-    summary: "브라우저 확장·노코드 도구로 공개 데이터를 수집합니다.",
+    title: "자동화 사고법 & Claude Code 첫 스크립트",
+    summary:
+      "반복 업무를 진단하고, Claude Code에게 자동화 스크립트를 만들어달라고 시키는 법을 익힙니다. 토큰·컨텍스트 관리 습관도 함께 잡습니다.",
     practicalExample:
-      "경쟁사 공지 페이지 변경을 매일 체크해 슬랙으로 알림 받기",
+      "매주 정리하던 보고서 데이터를 Claude Code로 자동 집계하는 스크립트 완성하기",
     weeks: 2,
     lessons: [
-      { id: "p-b2-1", title: "크롤링이란 · 윤리·법적 주의", durationMinutes: 25 },
-      { id: "p-b2-2", title: "노코드 수집 도구", durationMinutes: 35 },
-      { id: "p-b2-3", title: "수집 데이터 정제", durationMinutes: 40 },
+      { id: "p-b2-1", title: "반복 업무 진단 — 무엇을 자동화할지 찾기", durationMinutes: 30 },
+      { id: "p-b2-2", title: "Claude Code에게 자동화 스크립트 만들어달라고 시키기", durationMinutes: 45 },
+      { id: "p-b2-3", title: "토큰 절약 원칙 & /clear 타이밍", durationMinutes: 25 },
     ],
   },
   {
@@ -54,15 +57,16 @@ const proModules: CurriculumModule[] = [
     trackId: "pro",
     level: "intermediate",
     order: 4,
-    title: "파이썬 실무 자동화",
-    summary: "스크립트로 이메일·파일·API 연동 자동화를 구현합니다.",
+    title: "데이터 연동 & AI API 활용",
+    summary:
+      "MCP로 AI에게 외부 서비스 제어 권한을 주고, Supabase DB와 STT·이미지 분석 API를 연결합니다.",
     practicalExample:
-      "매일 아침 KPI 메일을 파싱해 노션 DB에 자동 업데이트",
+      "회의 녹음 파일 → STT API → 텍스트 정제 → Supabase DB 자동 저장",
     weeks: 3,
     lessons: [
-      { id: "p-i1-1", title: "파이썬 환경 30분 세팅", durationMinutes: 30 },
-      { id: "p-i1-2", title: "파일·이메일 자동화", durationMinutes: 50 },
-      { id: "p-i1-3", title: "REST API 연동", durationMinutes: 55 },
+      { id: "p-i1-1", title: "MCP 개념 & Supabase DB·Storage 세팅", durationMinutes: 40 },
+      { id: "p-i1-2", title: "STT API로 회의록 자동화", durationMinutes: 50 },
+      { id: "p-i1-3", title: "이미지·문서 분석 API 활용", durationMinutes: 45 },
     ],
   },
   {
@@ -70,15 +74,16 @@ const proModules: CurriculumModule[] = [
     trackId: "pro",
     level: "intermediate",
     order: 5,
-    title: "Claude Code · Cursor 실무 워크플로",
-    summary: "AI 에이전트로 스크립트·도구를 빠르게 만들고 수정합니다.",
+    title: "미니 서비스 구축 & 하네스 엔지니어링",
+    summary:
+      "POC → MVP 흐름으로 서비스를 만들고, Rules·Skills·Agents 구조로 첫 에이전트 팀을 설계합니다.",
     practicalExample:
-      "사내 보고서 포맷 변환 CLI를 Claude Code로 1시간 안에 제작",
+      "Vercel에 배포한 뒤 Rules·Skills 파일로 에이전트에게 역할을 부여하고 보고서 초안 자동 생성",
     weeks: 3,
     lessons: [
-      { id: "p-i2-1", title: "에이전트 코딩 개념", durationMinutes: 30 },
-      { id: "p-i2-2", title: "프로젝트 규칙·스킬 파일", durationMinutes: 45 },
-      { id: "p-i2-3", title: "디버깅·리뷰 루프", durationMinutes: 50 },
+      { id: "p-i2-1", title: "POC → MVP 설계 & Vercel 배포", durationMinutes: 40 },
+      { id: "p-i2-2", title: "gitignore·보안 체크리스트", durationMinutes: 30 },
+      { id: "p-i2-3", title: "Rules / Skills / Agents 첫 에이전트 설계", durationMinutes: 50 },
     ],
   },
   {
@@ -86,15 +91,16 @@ const proModules: CurriculumModule[] = [
     trackId: "pro",
     level: "advanced",
     order: 6,
-    title: "대규모 크롤링 · 파이프라인",
-    summary: "스케줄·에러 처리·저장소까지 갖춘 수집 파이프라인을 설계합니다.",
+    title: "멀티 에이전트 오케스트레이션",
+    summary:
+      "메인 에이전트 → 서브 에이전트 역할 분담, 밸리데이션·QA 피드백 루프로 휴먼 에러를 차단합니다.",
     practicalExample:
-      "뉴스·리뷰 1만 건/일 수집 → 정제 → 주간 인사이트 리포트 자동 생성",
+      "분석 에이전트 → 보고서 작성 에이전트 → QA 에이전트 파이프라인으로 주간 리포트 자동 생성",
     weeks: 4,
     lessons: [
-      { id: "p-a1-1", title: "파이프라인 아키텍처", durationMinutes: 40 },
-      { id: "p-a1-2", title: "스케줄·모니터링", durationMinutes: 45 },
-      { id: "p-a1-3", title: "데이터 품질·검증", durationMinutes: 50 },
+      { id: "p-a1-1", title: "에이전트 역할 분담 & 인터랙티브 모드 설계", durationMinutes: 45 },
+      { id: "p-a1-2", title: "밸리데이션 체크 & QA 피드백 루프", durationMinutes: 50 },
+      { id: "p-a1-3", title: "병렬 vs 순차 에이전트 선택 기준", durationMinutes: 40 },
     ],
   },
   {
@@ -102,15 +108,16 @@ const proModules: CurriculumModule[] = [
     trackId: "pro",
     level: "advanced",
     order: 7,
-    title: "팀 AI 자동화 도입",
-    summary: "보안·권한·문서화까지 포함해 조직에 자동화를 확산합니다.",
+    title: "세팅 고도화 & 완전 자동화",
+    summary:
+      ".claude 디렉토리 구조·커스텀 명령어를 완성하고, Ralph Loop으로 에이전트가 밤새 자율 작업하는 구조를 만듭니다.",
     practicalExample:
-      "마케팅팀 5명이 쓰는 캠페인 리포트 자동화 패키지 배포",
+      "/make-report 명령어 한 번으로 데이터 수집·분석·슬랙 발송까지 자동 완료",
     weeks: 3,
     lessons: [
-      { id: "p-a2-1", title: "보안·API 키 관리", durationMinutes: 35 },
-      { id: "p-a2-2", title: "내부 가이드·온보딩", durationMinutes: 40 },
-      { id: "p-a2-3", title: "효과 측정·개선", durationMinutes: 45 },
+      { id: "p-a2-1", title: ".claude 디렉토리 & 커스텀 명령어 설계", durationMinutes: 40 },
+      { id: "p-a2-2", title: "토큰 최적화 — Opus Plan 모드 & 컨텍스트 캐싱", durationMinutes: 40 },
+      { id: "p-a2-3", title: "Ralph Loop — 자율 반복 작업 설정", durationMinutes: 45 },
     ],
   },
 ];
@@ -118,18 +125,18 @@ const proModules: CurriculumModule[] = [
 const proCapstone: CurriculumModule = {
   id: "pro-capstone",
   trackId: "pro",
-  level: "intermediate",
+  level: "advanced",
   order: 99,
-  title: "커스텀 자동화 프로젝트",
+  title: "나만의 AI 워크플로우 자산화",
   summary:
-    "가장 번거로운 반복 작업을 하나 골라, 수집·처리·알림까지 처음부터 끝까지 직접 만듭니다.",
+    "재사용 가능한 에이전트 팀을 완성하고, 본인 업무에 맞는 자동화 워크플로우를 처음부터 끝까지 설계·배포합니다.",
   practicalExample:
-    "예: 고객 문의 분류 → 시트 기록 → 주간 요약 슬랙 전송 (본인 업무에 맞게 설계)",
+    "예: 콘텐츠 기획 에이전트 + 초안 작성 에이전트 + 검수 에이전트로 주간 뉴스레터 완전 자동화",
   weeks: 4,
   lessons: [
-    { id: "p-c1", title: "문제 정의·범위 잡기", durationMinutes: 60 },
-    { id: "p-c2", title: "핵심 기능 구현 (멘토 피드백)", durationMinutes: 120 },
-    { id: "p-c3", title: "안정화·문서화·시연", durationMinutes: 90 },
+    { id: "p-c1", title: "워크플로우 설계 & 에이전트 역할 정의", durationMinutes: 60 },
+    { id: "p-c2", title: "핵심 파이프라인 구현 (멘토 피드백)", durationMinutes: 120 },
+    { id: "p-c3", title: "안정화·문서화·팀 공유 데모", durationMinutes: 90 },
   ],
 };
 
