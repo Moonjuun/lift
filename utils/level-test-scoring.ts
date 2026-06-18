@@ -1,27 +1,30 @@
 import { LEVEL_TEST_QUESTIONS } from "@/constants/level-test-questions";
+import { getEntryModule } from "@/constants/curriculum";
 import type { LevelTestAnswer, LevelTestResult } from "@/types/level-test";
 import type { Level } from "@/types/level";
 import type { TrackId } from "@/types/track";
 import { LEVEL_ORDER } from "@/types/level";
-
-const EMPTY_LEVEL_SCORES: Record<Level, number> = {
-  entry: 0,
-  beginner: 0,
-  intermediate: 0,
-  advanced: 0,
-};
 
 const EMPTY_TRACK_SCORES: Record<TrackId, number> = {
   pro: 0,
   vibe: 0,
 };
 
-/** 답변 목록으로 레벨·트랙 추천 결과 계산 */
+/**
+ * 답변 목록으로 레벨·트랙·진입 모듈을 계산한다.
+ *
+ * 레벨 산정 원칙: **증거가 바닥(floor)을 정하고, 자가 진단은 한 단계까지만 올린다.**
+ * - demonstrated: 역량 문항(unlocksLevel)에서 증명된 최고 레벨
+ * - self: 자가 진단(selfLevel)
+ * - 최종 = self를 [demonstrated, demonstrated+1] 범위로 클램프
+ *   (증거보다 낮게 보면 증거로 끌어올리고, 과대평가는 한 단계까지만 허용)
+ */
 export function calculateLevelTestResult(
   answers: LevelTestAnswer[],
 ): LevelTestResult {
-  const levelScores = { ...EMPTY_LEVEL_SCORES };
   const trackScores = { ...EMPTY_TRACK_SCORES };
+  let demonstratedIndex = 0; // 기본값 entry
+  let selfIndex: number | null = null;
 
   for (const answer of answers) {
     const question = LEVEL_TEST_QUESTIONS.find(
@@ -30,48 +33,57 @@ export function calculateLevelTestResult(
     const option = question?.options.find((o) => o.id === answer.optionId);
     if (!option) continue;
 
-    for (const [level, score] of Object.entries(option.levelScore)) {
-      levelScores[level as Level] += score ?? 0;
+    if (option.trackScore) {
+      for (const [track, score] of Object.entries(option.trackScore)) {
+        trackScores[track as TrackId] += score ?? 0;
+      }
     }
-    for (const [track, score] of Object.entries(option.trackScore)) {
-      trackScores[track as TrackId] += score ?? 0;
+    if (option.unlocksLevel) {
+      demonstratedIndex = Math.max(
+        demonstratedIndex,
+        LEVEL_ORDER.indexOf(option.unlocksLevel),
+      );
+    }
+    if (option.selfLevel) {
+      selfIndex = LEVEL_ORDER.indexOf(option.selfLevel);
     }
   }
 
-  const level = pickHighest(levelScores, LEVEL_ORDER);
-  const recommendedTrack = trackScores.pro >= trackScores.vibe ? "pro" : "vibe";
+  const finalIndex =
+    selfIndex === null
+      ? demonstratedIndex
+      : clamp(selfIndex, demonstratedIndex, demonstratedIndex + 1);
+  const level = LEVEL_ORDER[clamp(finalIndex, 0, LEVEL_ORDER.length - 1)];
 
-  const { headline, summary } = buildResultCopy(level, recommendedTrack);
+  const recommendedTrack: TrackId =
+    trackScores.pro >= trackScores.vibe ? "pro" : "vibe";
+  const entryModule = getEntryModule(recommendedTrack, level);
+
+  const { headline, summary } = buildResultCopy(
+    level,
+    recommendedTrack,
+    entryModule.title,
+  );
 
   return {
     level,
-    levelScores,
     recommendedTrack,
     trackScores,
+    recommendedModuleId: entryModule.id,
+    recommendedModuleTitle: entryModule.title,
     headline,
     summary,
   };
 }
 
-function pickHighest<T extends string>(
-  scores: Record<T, number>,
-  order: T[],
-): T {
-  let best = order[0];
-  let bestScore = scores[best];
-
-  for (const key of order) {
-    if (scores[key] > bestScore) {
-      best = key;
-      bestScore = scores[key];
-    }
-  }
-  return best;
+function clamp(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
 }
 
 function buildResultCopy(
   level: Level,
   track: TrackId,
+  moduleTitle: string,
 ): { headline: string; summary: string } {
   const levelCopy: Record<Level, string> = {
     entry: "AI와 코딩 용어부터 차근차근 시작하면 좋아요.",
@@ -87,7 +99,7 @@ function buildResultCopy(
 
   return {
     headline: levelCopy[level],
-    summary: `${trackCopy[track]} 다른 트랙 커리큘럼도 자유롭게 둘러보세요.`,
+    summary: `${trackCopy[track]} ‘${moduleTitle}’ 모듈부터 시작하는 걸 추천해요.`,
   };
 }
 

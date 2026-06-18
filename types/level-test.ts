@@ -4,10 +4,12 @@ import type { TrackId } from "./track";
 export type LevelTestOption = {
   id: string;
   label: string;
-  /** 레벨 점수 가중치 */
-  levelScore: Partial<Record<Level, number>>;
-  /** 트랙 성향 점수 (pro / vibe) */
-  trackScore: Partial<Record<TrackId, number>>;
+  /** 트랙 성향 점수 (pro / vibe) — 트랙 판별 문항에서 사용 */
+  trackScore?: Partial<Record<TrackId, number>>;
+  /** 역량 증거: 이 보기를 고르면 최소 이 레벨은 감당할 수 있음 */
+  unlocksLevel?: Level;
+  /** 자가 진단 문항에서 사용자가 스스로 고른 레벨 */
+  selfLevel?: Level;
 };
 
 export type LevelTestQuestion = {
@@ -26,9 +28,12 @@ export type LevelTestAnswer = {
 
 export type LevelTestResult = {
   level: Level;
-  levelScores: Record<Level, number>;
   recommendedTrack: TrackId;
   trackScores: Record<TrackId, number>;
+  /** 추천 진입 모듈 id */
+  recommendedModuleId: string;
+  /** 추천 진입 모듈 제목 */
+  recommendedModuleTitle: string;
   /** 결과 한 줄 요약 */
   headline: string;
   /** 맞춤 안내 문구 */

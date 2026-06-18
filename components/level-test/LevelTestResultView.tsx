@@ -62,6 +62,17 @@ export function LevelTestResultView() {
             highlighted
           />
         )}
+        {recommended && (
+          <Link
+            href={ROUTES.trackDetail(recommended.slug)}
+            className={`mt-4 block rounded-xl p-4 transition-colors hover:bg-zinc-50 ${THEME.card}`}
+          >
+            <p className={`text-xs ${THEME.textMuted}`}>여기서 시작하면 좋아요</p>
+            <p className="mt-1 font-semibold">
+              {result.recommendedModuleTitle}
+            </p>
+          </Link>
+        )}
       </section>
 
       {/* 다른 트랙 — 직접 클릭해서 바로 진입 */}

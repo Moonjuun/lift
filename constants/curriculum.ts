@@ -1,4 +1,7 @@
 import type { Curriculum, CurriculumModule } from "@/types/curriculum";
+import type { Level } from "@/types/level";
+import type { TrackId } from "@/types/track";
+import { LEVEL_ORDER } from "@/types/level";
 
 const proModules: CurriculumModule[] = [
   {
@@ -293,4 +296,26 @@ export function getCurriculumByTrackSlug(
     return CURRICULA[slug];
   }
   return undefined;
+}
+
+/**
+ * 트랙·레벨에 맞는 첫 진입 모듈을 반환한다.
+ * 해당 레벨 모듈이 없으면 한 단계씩 낮춰 가장 가까운 모듈을 고른다.
+ */
+export function getEntryModule(
+  trackId: TrackId,
+  level: Level,
+): CurriculumModule {
+  const modules = CURRICULA[trackId].modules;
+  const startIndex = LEVEL_ORDER.indexOf(level);
+
+  for (let i = startIndex; i >= 0; i--) {
+    const candidates = modules
+      .filter((m) => m.level === LEVEL_ORDER[i])
+      .sort((a, b) => a.order - b.order);
+    if (candidates.length > 0) return candidates[0];
+  }
+
+  // 모든 레벨이 비는 일은 없지만, 안전하게 order가 가장 낮은 모듈로 폴백
+  return [...modules].sort((a, b) => a.order - b.order)[0];
 }

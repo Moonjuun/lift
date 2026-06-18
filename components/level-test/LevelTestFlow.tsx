@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { LEVEL_TEST_QUESTIONS } from "@/constants/level-test-questions";
@@ -11,8 +11,13 @@ import { useLevelTestStore } from "@/store/level-test-store";
 /** 레벨 테스트 문항 진행 UI */
 export function LevelTestFlow() {
   const router = useRouter();
-  const { answers, setAnswer, computeResult } = useLevelTestStore();
+  const { answers, setAnswer, computeResult, reset } = useLevelTestStore();
   const [step, setStep] = useState(0);
+
+  // 진입 시 이전 진행 상태(저장된 답변)를 비워 항상 새로 시작한다
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   const question = LEVEL_TEST_QUESTIONS[step];
   const total = LEVEL_TEST_QUESTIONS.length;
