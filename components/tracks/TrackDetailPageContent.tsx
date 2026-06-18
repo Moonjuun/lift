@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ThemeShell } from "@/components/layout/ThemeShell";
 import { ModuleList } from "@/components/curriculum/ModuleList";
+import { ContactDialog } from "@/components/contact/ContactDialog";
 import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from "@/components/ui/Icon";
 import { getTrackBySlug } from "@/apis/getTracks";
 import { getCurriculumBySlug } from "@/apis/getCurriculum";
@@ -134,14 +135,18 @@ export async function TrackDetailPageContent({
             먼저 레벨을 진단하면, 이 커리큘럼에서 나에게 맞는 구간부터 바로
             시작할 수 있어요.
           </p>
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href={ROUTES.levelTest}
-              className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#ff5c35] transition-colors hover:bg-orange-50"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#ff5c35] transition-colors hover:bg-orange-50 sm:w-auto"
             >
               내 레벨 진단하기
               <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
+            <ContactDialog
+              triggerLabel="문의하기"
+              triggerClassName="inline-flex w-full items-center justify-center rounded-xl border border-white/50 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 sm:w-auto"
+            />
           </div>
         </div>
       </section>
