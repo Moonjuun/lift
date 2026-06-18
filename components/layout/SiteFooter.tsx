@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactDialog } from "@/components/contact/ContactDialog";
 import { ROUTES } from "@/constants/routes";
 import { THEME } from "@/constants/theme";
 
@@ -43,6 +44,12 @@ export function SiteFooter() {
                 >
                   트랙 탐색
                 </Link>
+              </li>
+              <li>
+                <ContactDialog
+                  triggerLabel="문의하기"
+                  triggerClassName="transition hover:opacity-80"
+                />
               </li>
             </ul>
           </nav>

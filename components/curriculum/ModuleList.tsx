@@ -18,6 +18,15 @@ export function ModuleList({
 
   return (
     <div className="flex flex-col gap-3">
+      {/* 학습 기간 안내 — 주차 번호가 아닌 예상 소요 기간, 개인차 있음 */}
+      <p
+        className={`rounded-lg bg-zinc-50 px-4 py-3 text-xs leading-relaxed ${THEME.textMuted}`}
+      >
+        ‘약 N주 과정’은 해당 모듈을 끝내는 데 걸리는{" "}
+        <span className="font-semibold text-zinc-700">예상 학습 기간</span>이에요
+        (2주차라는 뜻이 아니에요). 사전 지식과 학습 속도 등 개인차에 따라 더 빠르거나
+        느릴 수 있어요.
+      </p>
       {sorted.map((mod, index) => {
         const isHighlight = highlightLevel === mod.level;
         return (
@@ -39,7 +48,7 @@ export function ModuleList({
                 </span>
               )}
               <span className={`ml-auto text-xs tabular-nums ${THEME.textMuted}`}>
-                약 {mod.weeks}주 · {mod.lessons.length}강
+                약 {mod.weeks}주 과정 · {mod.lessons.length}강
               </span>
             </div>
 
