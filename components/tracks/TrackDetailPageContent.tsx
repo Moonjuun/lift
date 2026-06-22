@@ -138,14 +138,14 @@ export async function TrackDetailPageContent({
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href={ROUTES.levelTest}
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#ff5c35] transition-colors hover:bg-orange-50 sm:w-auto"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-[#ff5c35] transition-colors hover:bg-orange-50 sm:w-auto sm:min-w-[11rem]"
             >
               내 레벨 진단하기
               <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <ContactDialog
               triggerLabel="문의하기"
-              triggerClassName="inline-flex w-full items-center justify-center rounded-xl border border-white/50 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 sm:w-auto"
+              triggerClassName="inline-flex w-full items-center justify-center rounded-xl bg-white/15 px-6 py-3 text-sm font-semibold text-white ring-1 ring-inset ring-white/40 transition-colors hover:bg-white/25 sm:w-auto sm:min-w-[11rem]"
             />
           </div>
         </div>
