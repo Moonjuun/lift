@@ -12,7 +12,7 @@ export const SITE = {
   url: resolvedUrl,
   title: "Lift — AI 학습 레벨 테스트",
   description:
-    "자가진단으로 나의 AI 활용 수준을 확인하고, 현직자·바이브 코딩 트랙 커리큘럼을 추천받으세요.",
+    "자가진단으로 나의 AI 활용 수준을 확인하고, 나에게 맞는 AI 학습 경로를 추천받으세요.",
   keywords: [
     "AI 학습",
     "레벨 테스트",
